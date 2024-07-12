@@ -5,14 +5,16 @@ on: [push]
 
 
 jobs:
-  install-docker:
+  run-docker:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: install docker 
-        run: |
-          curl -sSL https://get.docker.com/ | sudo sh
+      # the "docker" command appears to already exist on this github action.
+      # - name: install docker 
+      #   run: |
+      #     curl -sSL https://get.docker.com/ | sudo sh
 
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: Build docker file
+        run: docker build -t sample-node-express .
