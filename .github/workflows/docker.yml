@@ -13,6 +13,6 @@ jobs:
 
       - name: install docker 
         run: |
-          curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+          curl -sSL https://get.docker.com/ | sudo sh
 
       - run: echo "This job's status is ${{ job.status }}."
