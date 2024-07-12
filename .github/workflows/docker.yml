@@ -17,9 +17,11 @@ jobs:
       #     curl -sSL https://get.docker.com/ | sudo sh
 
       - name: Build docker file
-        run: docker build -t sample-node-express .
+        run: |
+          docker build -t sample-node-express .
+          docker images
 
       - name: Run docker file
         run: |
-          docker run -d 3000:3000 sample-node-express
+          docker run -p 3000:3000 -d sample-node-express
           docker ps
