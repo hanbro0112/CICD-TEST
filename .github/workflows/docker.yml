@@ -18,3 +18,8 @@ jobs:
 
       - name: Build docker file
         run: docker build -t sample-node-express .
+
+      - name: Run docker file
+        run: |
+          docker run -d 3000:3000 sample-node-express
+          docker ps
