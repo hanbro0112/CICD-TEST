@@ -13,7 +13,6 @@ jobs:
 
       - name: install docker 
         run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
+          curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
       - run: echo "This job's status is ${{ job.status }}."
