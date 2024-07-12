@@ -25,3 +25,7 @@ jobs:
         run: |
           docker run -p 3000:3000 -d sample-node-express
           docker ps
+
+      - name: connect to web service
+        run: | 
+          curl http://localhost:3000/
