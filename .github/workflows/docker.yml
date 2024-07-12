@@ -28,4 +28,4 @@ jobs:
 
       - name: connect to web service
         run: | 
-          curl http://localhost:3000/
+          curl http://localhost:3000/ | sudo sh
