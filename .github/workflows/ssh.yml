@@ -1,0 +1,19 @@
+name: ssh
+
+
+on: [push]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 在 $GITHUB_WORKSPACE 下簽出您的存儲庫，以便您的工作可以訪問它
+      - uses: actions/checkout@v4
+
+      - name: ssh to server
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+          mkdir test
