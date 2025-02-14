@@ -1,8 +1,13 @@
 name: ssh
 
 
-on: [push]
-
+on: 
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  # 可以手動觸發工作流程
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,8 +17,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: ssh to server
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-          mkdir test
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: mkdir -p test
+        
