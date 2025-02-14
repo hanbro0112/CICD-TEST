@@ -6,8 +6,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  # 可以手動觸發工作流程
-  workflow_dispatch:
 
 jobs:
   build:
