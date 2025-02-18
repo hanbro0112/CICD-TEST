@@ -16,11 +16,11 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script:  
-            cd shopping-websit && 
+            cd shopping-website && 
             docker compose down && 
             git pull origin main &&
-            cat ${{ secrets.ENV }} > .env &&
-            cat ${{ secrets.AWS_RDS_CONFIG }} > ./config/aws_rds_config.js && 
+            cat "${{ secrets.ENV }}" > .env &&
+            cat "${{ secrets.AWS_RDS_CONFIG }}" > ./config/aws_rds_config.js && 
             docker build -t my-web-app . && 
             docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
             npm install && 
