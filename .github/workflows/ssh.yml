@@ -15,5 +15,14 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: mkdir -p test
-        
+          script:  
+            cd shopping-websit && 
+            docker compose down && 
+            git pull origin main &&
+            cat ${{ secrets.ENV }} > .env &&
+            cat ${{ secrets.AWS_RDS_CONFIG }} > ./config/aws_rds_config.js && 
+            docker build -t my-web-app . && 
+            docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
+            npm install && 
+            npm run migrate && mkdir -p github_action_success
+            # docker-compose up -d 
