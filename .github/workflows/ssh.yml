@@ -17,7 +17,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script:  
             cd shopping-website && 
-            docker compose down && 
+            docker compose stop && 
             git pull origin main &&
             cat "${{ secrets.ENV }}" > .env &&
             cat "${{ secrets.AWS_RDS_CONFIG }}" > ./config/aws_rds_config.js && 
