@@ -16,12 +16,12 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script:  
+            export NVM_DIR=~/.nvm &&
+            source ~/.nvm/nvm.sh &&
+            npm --help &&
             cd shopping-website &&
             docker-compose stop &&   
             git pull origin main && 
-            pwd && 
-            nvm ls &&
-            nvm use 20 && 
             npm install && 
             npm run migrate &&  
             docker-compose up -d 
