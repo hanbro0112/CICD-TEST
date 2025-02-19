@@ -15,15 +15,15 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            exec bash \-l
-            cd ~/project-dir
-            ./deploy.sh
-            cd shopping-website
-            docker-compose stop   
-            git pull origin main
-            npm install
-            npm run migrate  
+          script:
+            exec bash \-l &&
+            cd ~/project-dir &&
+            ./deploy.sh &&
+            cd shopping-website &&
+            docker-compose stop &&
+            git pull origin main &&
+            npm install &&
+            npm run migrate &&  
             docker-compose up -d
             
             
