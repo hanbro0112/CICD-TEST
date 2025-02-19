@@ -15,15 +15,13 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          before_script:
-            docker compose stop
           script:  
+            docker compose stop
             cd shopping-website &&  
             git pull origin main &&
             whoami &&
             npm install &&
             npm run migrate && 
-          after_script:
             docker-compose up -d 
             # docker build -t my-web-app . && 
             # docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
