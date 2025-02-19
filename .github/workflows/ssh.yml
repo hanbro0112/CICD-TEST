@@ -15,19 +15,14 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          script:
-            source ~/.nvm/nvm.sh &&
-            nvm use 20 && 
-            cd shopping-website && 
-            docker-compose stop &&
-            git pull origin main &&
-            npm install &&
-            npm run migrate &&  
+          script: |
+            source ~/.nvm/nvm.sh
+            nvm use 20
+            cd shopping-website 
+            docker-compose stop
+            git pull origin main
+            npm install
+            npm run migrate  
+            docker build -t my-web-app . && 
+            docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
             docker-compose up -d
-            
-            
-          # docker build -t my-web-app . && 
-            # docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
-            # export NVM_DIR=~/.nvm &&
-            # source ~/.nvm/nvm.sh &&
-            # npm --help &&
