@@ -20,7 +20,7 @@ jobs:
             docker-compose stop &&   
             git pull origin main && 
             pwd && 
-            whoami && 
+            whoami | cat > who && 
             npm install && 
             npm run migrate &&  
             docker-compose up -d 
