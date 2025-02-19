@@ -16,10 +16,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script:
-            exec bash \-l &&
-            cd ~/project-dir &&
-            ./deploy.sh &&
-            cd shopping-website &&
+            source ~/.nvm/nvm.sh &&
+            nvm use 20 && 
+            cd shopping-website && 
             docker-compose stop &&
             git pull origin main &&
             npm install &&
