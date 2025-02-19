@@ -19,8 +19,9 @@ jobs:
             cd shopping-website && 
             docker compose stop && 
             git pull origin main &&
-            docker build -t my-web-app . && 
-            docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
-            npm install && 
+            ls && 
+            npm install &&
             npm run migrate && 
             docker-compose up -d 
+            # docker build -t my-web-app . && 
+            # docker build -t my-consumer-app -f ./kafka/Dockerfile . && 
