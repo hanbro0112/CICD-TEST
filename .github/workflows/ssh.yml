@@ -16,8 +16,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script:  
-            docker-compose stop && 
-            cd shopping-website &&  
+            cd shopping-website &&
+            docker-compose stop &&   
             git pull origin main && 
             pwd && 
             whoami && 
